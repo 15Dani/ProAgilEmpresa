@@ -14,7 +14,7 @@ namespace ProAgil.Repository
 
         public DbSet<Empresa> Empresas { get; set;}
     
-        public DbSet<RedeSocial> RedeSociais { get; set;}
+    
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,11 +33,6 @@ namespace ProAgil.Repository
 
             });
             
-
-            modelBuilder.Entity<Empresa>()
-                .Property(E => E.ImagemURL)
-                .ValueGeneratedOnAdd();
-
             base.OnModelCreating(modelBuilder);
         }
     }

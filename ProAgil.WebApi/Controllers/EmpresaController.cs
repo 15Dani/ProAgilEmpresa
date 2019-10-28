@@ -76,31 +76,7 @@ namespace ProAgil.WebApi.Controllers
             }
         }
 
-        [HttpPost("uploadImage")]
-        public async Task<IActionResult> UploadImage()
-        {
-            try{
-                var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources","Images");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(),folderName);
-
-                if (file.Length > 0)
-                {
-                    var fileName = file.FileName;
-                    var fullPath = Path.Combine(pathToSave,fileName);
-                    using (var stream = new FileStream(fullPath,FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-                }
-
-                return Ok();
-            } catch (System.Exception ex){
-                return StatusCode(StatusCodes.Status500InternalServerError,$"Ocorreu um erro ao fazer upload da imagem {ex}");
-            }
-            
-        }
-
+   
         [HttpPost]
         public async Task<IActionResult> Post(EmpresaDto model)
         {
@@ -110,52 +86,32 @@ namespace ProAgil.WebApi.Controllers
                 _repo.Add(empresa);
                 if (await _repo.SaveChangesAsync())
                 {
-                    if (empresa.ImagemURL != "")
-                    {
-                        empresa.ImagemURL = empresa.Id+".jpg";
-                    }
-                    
-                    _repo.Update(empresa);
-                    if (await _repo.SaveChangesAsync())
-                    {   
-                        return Created($"/api/empresa/{model.Id}", _mapper.Map<EmpresaDto>(empresa));
-                    }
+                    return Created($"api/Empresa/{empresa.Id}", _mapper.Map<EmpresaDto>(empresa));
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                return StatusCode(
-                    StatusCodes.Status500InternalServerError,
-                    "Ocorreu um erro no banco de dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um falha ao acessar o banco de dados " + e.Message);
             }
 
-            return BadRequest();
+            return StatusCode(StatusCodes.Status403Forbidden, $"Ocorreu um erro ao inserir {model}");
         }
 
-        [HttpPut("{empresaId}")]
-        public async Task<IActionResult> Put(int empresaid, EmpresaDto model)
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> Put(int Id, EmpresaDto model)
         {
             try
             {
-                var empresa = await _repo.GetEmpresaAsyncById(empresaid);
+                var empresa = await _repo.GetEmpresaAsyncById(Id);
                 if (empresa == null) return NotFound();
-                
-       
-                var idRedes = new List<int>();
 
-   
-                model.RedesSociais.ForEach(rede => idRedes.Add(rede.Id));
-                
-                var redesSociais = empresa.RedesSociais.Where( rede => !idRedes.Contains(rede.Id)).ToArray();
 
-                if (redesSociais.Length > 0) _repo.DeleteRange(redesSociais);
-                
-                _mapper.Map(model,empresa);
-                empresa.ImagemURL = $"{empresa.Id.ToString()}.jpg";
+                _mapper.Map(model, empresa);
                 _repo.Update(empresa);
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Created($"/api/empresa/{empresa.Id}", _mapper.Map<EmpresaDto>(empresa));
+                    return Created($"/api/Empresa/{empresa.Id}", _mapper.Map<EmpresaDto>(empresa));
                 }
             }
             catch (System.Exception)
@@ -167,7 +123,6 @@ namespace ProAgil.WebApi.Controllers
 
             return BadRequest();
         }
-
 
         [HttpDelete("{empresaid}")]
         public async Task<IActionResult> Delete(int empresaid)

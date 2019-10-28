@@ -6,7 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -18,7 +20,7 @@ import { EmpresaService } from './_services/empresa.service';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { EmpresaComponent } from './empresa/empresa.component';
-import { EmpresaEditComponent } from './empresa/empresaEdit/empresaEdit.component';
+
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormatDateTimePipe } from './_helps/FormatDateTime.pipe';
@@ -34,7 +36,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
       AppComponent,
       NavComponent,
       EmpresaComponent,
-      EmpresaEditComponent,
       DashboardComponent,
       TituloComponent,
       FormatDateTimePipe,
@@ -44,7 +45,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
    ],
    imports: [
       BrowserModule,
-      BsLocaleService,
       BsDropdownModule.forRoot(),
       BsDatepickerModule.forRoot(),
       ModalModule.forRoot(),

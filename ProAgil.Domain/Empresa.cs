@@ -11,10 +11,8 @@ namespace ProAgil.Domain
         public DateTime DataCadastro { get; set; }
         public string Descricao { get; set; }
         public int QtdeFuncionarios { get; set; }  
-        public string ImagemURL { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
-        public List<RedeSocial> RedesSociais { get; set; } //Redes Social da Empresa
-
+   
     }
 }

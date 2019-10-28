@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class EmpresaService {
 
-urlBase = 'https://localhost:5001/api/empresa';
-
 constructor(private http: HttpClient) {}
+
+urlBase = 'https://localhost:5000/api/Empresa';
+  uploadImage(file: File, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
 
 
 getAllEmpresa(): Observable<Empresa[]>  {
@@ -22,7 +25,7 @@ getAllEmpresa(): Observable<Empresa[]>  {
     return this.http.get<Empresa>(`${this.urlBase}/${id}`);
   }
 
-  getByTemaEmpresa(nome: string): Observable<Empresa[]> {
+  getByNomeEmpresa(nome: string): Observable<Empresa[]> {
     return this.http.get<Empresa[]>(`${this.urlBase}/getByNome/${nome}`);
   }
 
@@ -37,13 +40,8 @@ getAllEmpresa(): Observable<Empresa[]>  {
   deleteEmpresa(id: number) {
     return this.http.delete(`${this.urlBase}/${id}`);
   }
-
-  uploadImage(file: File, name: string) {
-    const fileToUpload = file[0] as File;
-    const formData = new FormData();
-    formData.append('file', fileToUpload, `${name}.jpg`);
-    return this.http.post(`${this.urlBase}/uploadImage`, formData);
-  }
 }
+
+
 
 

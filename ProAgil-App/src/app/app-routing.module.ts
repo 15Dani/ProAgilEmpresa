@@ -6,7 +6,6 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { AuthGuard } from './auth/auth.guard';
-import { EmpresaEditComponent } from './empresa/empresaEdit/empresaEdit.component';
 
 const routes: Routes = [
   {path: 'user', component: UserComponent,
@@ -17,7 +16,6 @@ const routes: Routes = [
   },
 
   {path: 'empresa' , component: EmpresaComponent, canActivate: [AuthGuard]},
-  {path: 'empresa/:id/edit' , component: EmpresaEditComponent, canActivate: [AuthGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}

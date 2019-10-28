@@ -18,15 +18,14 @@ namespace ProAgil.WebApi.Dtos
 
         [Range(2,120000,ErrorMessage="O campo {0} de possuir no minimo 2 pessoas e no máximo 120000 pessoas")]
         public int QtdeFuncionarios { get; set; }
-        public string ImagemURL { get; set; }
-        
+      
         [Phone(ErrorMessage="O campo {0} está inválido")]
         public string Telefone { get; set; }
         
         [EmailAddress(ErrorMessage="O campo {0} está inválido")]
         public string Email { get; set; }
      
-        public List<RedeSocialDto> RedesSociais { get; set; }
+       
  
     }
 }

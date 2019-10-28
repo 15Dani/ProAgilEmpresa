@@ -2,7 +2,7 @@
 <div class="d-flex">
   <div class="form-inline mr-auto">
     <div class="form-group mb-2">
-      <input type="text" class="form-control mr-2" placeholder="Buscar" [(ngModel)]="filtroLista">
+      <input type="text" class="form-control mr-2" name= filtro placeholder="Buscar" [(ngModel)]="filtroLista">
     </div>
   </div>
   <div>
@@ -33,12 +33,6 @@
 </thead>
 <tbody *ngIf="empresa">
   <tr *ngFor="let empresa of empresasFiltrados">
-    <td>
-      <img *ngIf="mostrarImagem"
-      src="https://localhost:5000/Resources/images/{{empresa.imagemURL}}?_ts={{dataAtual}}"
-      [style.width.px]="imagemAltura"
-      [style.margin.px]="imagemMargem">
-    </td>
     <td>{{empresa.id}}</td>
     <td>{{empresa.nome}}</td>
     <td>{{empresa.descricao}}</td>

@@ -35,15 +35,14 @@ namespace ProAgil.Repository
             return (await _context.SaveChangesAsync() > 0);
         }
 
-        //Empresa por id
-        public async Task<Empresa> GetEmpresaAsyncById(int empresaid)
+  
+        public async Task<Empresa> GetEmpresaAsyncById(int id)
         {
 
-            return await _context.Empresas.FindAsync(empresaid);
+            return await _context.Empresas.FindAsync(id);
 
         }
 
-        //Empresa retornar todos, incluir redes sociais aqui
         public async Task<IEnumerable<Empresa>> GetAllEmpresaAsync()
         {
 
@@ -52,7 +51,7 @@ namespace ProAgil.Repository
                                    
         }
 
-        //Enterprise retorna por nome
+       
         public async Task<IEnumerable<Empresa>> GetAllEmpresaAsyncByNome(string nome)
         {
             IQueryable<Empresa> query = _context.Empresas;
@@ -66,15 +65,7 @@ namespace ProAgil.Repository
 
         }
 
-        //Não entendo porque ele puxou sendo que já tenho todos os metoodos
-        Task<Empresa[]> IProAgilRepository.GetAllEmpresaAsyncByNome(string nome)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        Task<Empresa[]> IProAgilRepository.GetAllEmpresaAsync()
-        {
-            throw new System.NotImplementedException();
-        }
+      
+       
     }
 }

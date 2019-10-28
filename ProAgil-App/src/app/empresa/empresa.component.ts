@@ -1,9 +1,18 @@
+import localePt from '@angular/common/locales/pt';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Empresa } from './../_models/Empresa';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker/public_api';
+
 import { ToastrService } from 'ngx-toastr';
 import { EmpresaService } from '../_services/empresa.service';
+import { registerLocaleData } from '@angular/common';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+
+
+registerLocaleData(localePt);
+defineLocale('pt-br', ptBrLocale);
 
 @Component({
   selector: 'app-empresa',

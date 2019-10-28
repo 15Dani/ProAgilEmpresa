@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProAgil.Domain;
 
@@ -11,9 +12,9 @@ namespace ProAgil.Repository
         void DeleteRange<T>(T[] entityArray) where T : class;
         Task<bool> SaveChangesAsync();
 
-        Task<Empresa[]> GetAllEmpresaAsyncByNome(string nome);
-        Task<Empresa[]> GetAllEmpresaAsync();
-        Task<Empresa> GetEmpresaAsyncById(int empresaid);
+        Task<IEnumerable<Empresa>> GetAllEmpresaAsyncByNome(string nome);
+        Task<IEnumerable<Empresa>> GetAllEmpresaAsync();
+        Task<Empresa> GetEmpresaAsyncById(int id);
 
      
         
