@@ -12,9 +12,6 @@ export class EmpresaService {
 constructor(private http: HttpClient) {}
 
 urlBase = 'https://localhost:5000/api/Empresa';
-  uploadImage(file: File, arg1: string) {
-    throw new Error('Method not implemented.');
-  }
 
 
 getAllEmpresa(): Observable<Empresa[]>  {

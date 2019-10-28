@@ -79,8 +79,8 @@ export class EmpresaComponent implements OnInit {
        salvarAlteracao(template: any) {
       if (this.registerForm.valid) {
         this.pesistirEmpresa().subscribe(
-          (empresa: Empresa) => {  // Aqui quero retornar todas as empresa
-            this.empresaService.getAllEmpresa(empresa.id.toString()).subscribe(
+          (empresa: Empresa) => {
+            this.empresaService.getAllEmpresa().subscribe(
               () => {
                 template.hide();
                 this.dataAtual = new Date().getMilliseconds().toString();
@@ -142,7 +142,6 @@ export class EmpresaComponent implements OnInit {
         telefone: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         qtdeFuncionarios: ['', [Validators.required, Validators.max(120000)]],
-        imagemURL: ['', Validators.required]
       });
     }
     onFileChange(empres: any) {
