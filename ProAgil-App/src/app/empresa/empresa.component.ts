@@ -72,7 +72,7 @@ export class EmpresaComponent implements OnInit {
         },
         error => {
           console.log(error);
-          this.toastr.error(`Ocorreu um erro ao carregar eventos: ${error.error}`);
+          this.toastr.error(`Ocorreu um erro ao carregar empresa: ${error.error}`);
         }
       );
     }

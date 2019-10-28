@@ -11,7 +11,7 @@ export class EmpresaService {
 
 constructor(private http: HttpClient) {}
 
-urlBase = 'https://localhost:5000/api/Empresa';
+urlBase = 'http://localhost:5000/api/Empresa';
 
 
 getAllEmpresa(): Observable<Empresa[]>  {

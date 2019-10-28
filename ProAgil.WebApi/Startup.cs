@@ -86,31 +86,34 @@ namespace ProAgil.WebApi
                     }
                     );
 
-            services
-                .AddMvc(options =>
-                {
-                    var policy = new AuthorizationPolicyBuilder()
-                        .RequireAuthenticatedUser()
-                        .Build();
+            //Comentei essa parte para validar o CRUD da APIs,  fique a vontade.
+            //services
+            //    .AddMvc(options =>
+            //    {
+            //        var policy = new AuthorizationPolicyBuilder()
+            //            .RequireAuthenticatedUser()
+            //            .Build();
 
-                    options.Filters.Add(new AuthorizeFilter(policy));
-                }
-                )
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(options =>
-                {
-                    //Set date configurations
-                    options
-                        .SerializerSettings
-                        .DateTimeZoneHandling = DateTimeZoneHandling.Local;
+            //        options.Filters.Add(new AuthorizeFilter(policy));
+            //    }
+            //    )
+            //    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            //    .AddJsonOptions(options =>
+            //    {
+            //        //Set date configurations
+            //        options
+            //            .SerializerSettings
+            //            .DateTimeZoneHandling = DateTimeZoneHandling.Local;
 
-                    options
-                        .SerializerSettings
-                        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                }
-                );
+            //        options
+            //            .SerializerSettings
+            //            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //    }
+            //    );
 
+          
             services.AddCors();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

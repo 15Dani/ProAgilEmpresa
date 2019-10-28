@@ -36,8 +36,9 @@ namespace ProAgil.WebApi.Controllers
             _signInManager = signInManager;
             _mapper = mapper;
         }
-
+        //Coloquei AllowAnonymous para teste
         [HttpGet("GetUser")]
+        [AllowAnonymous]
         public IActionResult GetUser()
         {
             return Ok(new UserDto());
