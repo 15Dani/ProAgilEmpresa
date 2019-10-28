@@ -27,9 +27,6 @@ export class EmpresaComponent implements OnInit {
     empresas: Empresa[];
     empresa: Empresa;
     modoSalva = '';
-    imagemAltura = 50;
-    imagemMargem = 2;
-    mostrarImagem = false;
     registerForm: FormGroup;
     _empresasFiltrados: Empresa[];
     _filtroLista: string;
@@ -79,14 +76,11 @@ export class EmpresaComponent implements OnInit {
         }
       );
     }
-    alternarImagem() {
-      this.mostrarImagem = !this.mostrarImagem;
-    }
-    salvarAlteracao(template: any) {
+       salvarAlteracao(template: any) {
       if (this.registerForm.valid) {
         this.pesistirEmpresa().subscribe(
-          (empresa: Empresa) => {
-            this.empresaService.uploadImage(this.file, empresa.id.toString()).subscribe(
+          (empresa: Empresa) => {  // Aqui quero retornar todas as empresa
+            this.empresaService.getAllEmpresa(empresa.id.toString()).subscribe(
               () => {
                 template.hide();
                 this.dataAtual = new Date().getMilliseconds().toString();
@@ -121,7 +115,6 @@ export class EmpresaComponent implements OnInit {
       this.modoSalva = 'put';
       this.openModal(template);
       this.empresa = Object.assign({}, empresa);
-      this.empresa.imagemURL = '';
       this.registerForm.patchValue(this.empresa);
     }
     excluirEmpresa(empresa: Empresa, confirm: any) {
